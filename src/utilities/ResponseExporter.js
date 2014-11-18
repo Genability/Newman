@@ -98,7 +98,6 @@ var ResponseExporter = jsface.Class({
 			for (var requestId in this._resultBodies) {
 			   if (this._resultBodies.hasOwnProperty(requestId)) {
 				   var responsePath = path.resolve(fileDir, requestId + '.json');
-			       log.note(" Response output for request: " + requestId + " in " + responsePath + "\n");
 			       var parsedBody;
 			       try {
 			       		parsedBody = JSON.stringify(JSON.parse(this._resultBodies[requestId]), null, 4);
