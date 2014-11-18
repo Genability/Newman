@@ -99,7 +99,13 @@ var ResponseExporter = jsface.Class({
 			   if (this._resultBodies.hasOwnProperty(requestId)) {
 				   var responsePath = path.resolve(fileDir, requestId + '.json');
 			       log.note(" Response output for request: " + requestId + " in " + responsePath + "\n");
-			       fs.writeFileSync(responsePath , JSON.stringify(this._resultBodies[requestId], null, 4));
+			       var parsedBody;
+			       try {
+			       		parsedBody = JSON.stringify(JSON.parse(this._resultBodies[requestId]), null, 4);
+					} catch(err) {
+						parsedBody = this._resultBodies[requestId];
+					}
+			       fs.writeFileSync(responsePath , parsedBody);
 			   }
 			}
 		}
